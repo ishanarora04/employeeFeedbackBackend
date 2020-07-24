@@ -1,0 +1,27 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const config = require("config");
+
+const port = config.get("port");
+const mongo_url = config.get("mongo.url");
+const mongo_db = config.get("mongo.database");
+const mongo_user = config.get("mongo.username");
+const mongo_password = config.get("mongo.password");
+
+const routes = require("./routes");
+const mongo_connect = require("./lib/mongo");
+const url = `mongodb://${mongo_user}:${mongo_password}@${mongo_url}/${mongo_db}`;
+const app = express();
+
+app.use("/v1", routes);
+
+let db = undefined;
+
+async function createApp() {
+  db = await mongo_connect(url);
+  app.listen(port, () => {
+    console.log(`APP is listening on ${port}`);
+  });
+}
+
+createApp();
