@@ -12,7 +12,7 @@ class FeedbackController {
   async get(req, res) {
     try {
       const params = req.query;
-      const output = this.feedbackService.get(params);
+      const output = await this.feedbackService.get(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);
@@ -23,7 +23,7 @@ class FeedbackController {
   async add(req, res) {
     try {
       const params = req.params;
-      const output = this.feedbackService.add(params);
+      const output = await this.feedbackService.add(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);
@@ -34,7 +34,7 @@ class FeedbackController {
   async update(req, res) {
     try {
       const params = req.params;
-      const output = this.feedbackService.update(params);
+      const output = await this.feedbackService.update(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);
@@ -45,7 +45,7 @@ class FeedbackController {
   async remove(req, res) {
     try {
       const params = req.params;
-      const output = this.feedbackService.remove(params);
+      const output = await this.feedbackService.remove(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);

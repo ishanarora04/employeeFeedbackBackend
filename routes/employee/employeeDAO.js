@@ -17,7 +17,7 @@ class EmployeeDAO {
 
   async add(params) {
     try {
-      console.log(params);
+      params["is_deleted"] = false;
       const employee = new this.Model(params);
       const output = await employee.save();
       return output;

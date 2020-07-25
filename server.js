@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const config = require("config");
 
 const port = config.get("port");
@@ -12,13 +13,14 @@ const routes = require("./routes");
 const mongo_connect = require("./lib/mongo");
 const url = `mongodb://${mongo_user}:${mongo_password}@${mongo_url}/${mongo_db}`;
 const app = express();
+app.use(morgan(":method :url :response-time"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use("/v1", routes);
 
-let db = undefined;
-
 async function createApp() {
-  db = await mongo_connect(url);
+  await mongo_connect(url);
   app.listen(port, () => {
     console.log(`APP is listening on ${port}`);
   });

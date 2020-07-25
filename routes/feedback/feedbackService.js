@@ -25,7 +25,8 @@ class FeedbackService {
     try {
       const id = params._id;
       delete params["_id"];
-      await this.feedbackDAO.update(id, params);
+      const output = await this.feedbackDAO.update(id, params);
+      return output;
     } catch (e) {
       throw e;
     }

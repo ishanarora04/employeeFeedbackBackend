@@ -12,7 +12,7 @@ class EmployeeController {
   async get(req, res) {
     try {
       const params = req.query;
-      const output = this.employeeService.get(params);
+      const output = await this.employeeService.get(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);
@@ -22,8 +22,8 @@ class EmployeeController {
 
   async add(req, res) {
     try {
-      const params = req.params;
-      const output = this.employeeService.add(params);
+      const params = req.body;
+      const output = await this.employeeService.add(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);
@@ -33,8 +33,8 @@ class EmployeeController {
 
   async update(req, res) {
     try {
-      const params = req.params;
-      const output = this.employeeService.update(params);
+      const params = req.body;
+      const output = await this.employeeService.update(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);
@@ -44,8 +44,8 @@ class EmployeeController {
 
   async remove(req, res) {
     try {
-      const params = req.params;
-      const output = this.employeeService.remove(params);
+      const params = req.body;
+      const output = await this.employeeService.remove(params);
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);

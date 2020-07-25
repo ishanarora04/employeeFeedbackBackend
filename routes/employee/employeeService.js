@@ -33,7 +33,7 @@ class EmployeeService {
 
   async remove(params) {
     try {
-      await this.employeeDAO.remove(params);
+      await this.employeeDAO.remove(params._id);
     } catch (e) {
       throw e;
     }
