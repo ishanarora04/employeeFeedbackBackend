@@ -6,7 +6,7 @@ class FeedbackController {
     this.get = this.get.bind(this);
     this.add = this.add.bind(this);
     this.update = this.update.bind(this);
-    this.remove = this.remove.bind(this);
+    this.getFeedbackRequestsForAnEmployee = this.getFeedbackRequestsForAnEmployee.bind(this);
   }
 
   async get(req, res) {
@@ -22,7 +22,7 @@ class FeedbackController {
 
   async add(req, res) {
     try {
-      const params = req.params;
+      const params = req.body;
       const output = await this.feedbackService.add(params);
       return utility.sendResponse(res, output);
     } catch (e) {
@@ -33,7 +33,7 @@ class FeedbackController {
 
   async update(req, res) {
     try {
-      const params = req.params;
+      const params = req.body;
       const output = await this.feedbackService.update(params);
       return utility.sendResponse(res, output);
     } catch (e) {
@@ -42,10 +42,13 @@ class FeedbackController {
     }
   }
 
-  async remove(req, res) {
+  async getFeedbackRequestsForAnEmployee(req, res) {
     try {
-      const params = req.params;
-      const output = await this.feedbackService.remove(params);
+      const params = req.query;
+      const _id = params._id;
+      const output = await this.feedbackService.getFeedbackRequestsForAnEmployee(
+        _id
+      );
       return utility.sendResponse(res, output);
     } catch (e) {
       console.error(e);

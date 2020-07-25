@@ -17,9 +17,9 @@ router.delete("/employee", employee.remove);
  * Feedback CRUD
  */
 router.get("/feedback", feedback.get);
+router.get("/feedbackForAnEmployee", feedback.getFeedbackRequestsForAnEmployee);
 router.post("/feedback", feedback.add);
 router.put("/feedback", feedback.update);
-router.delete("/feedback", feedback.remove);
 
 /**
  *

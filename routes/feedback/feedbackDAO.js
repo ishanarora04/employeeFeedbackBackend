@@ -33,7 +33,9 @@ class FeedbackDAO {
   async get(params, projection) {
     try {
       params["is_deleted"] = false;
-      const feedbacks = await this.Model.find(params, projection);
+      const feedbacks = await this.Model.find(params, projection)
+        .populate("from")
+        .populate("to");
       return feedbacks;
     } catch (e) {
       throw e;

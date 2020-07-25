@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 class FeedbackService {
   constructor(feedbackDAO) {
     this.feedbackDAO = feedbackDAO;
@@ -14,6 +16,10 @@ class FeedbackService {
 
   async add(params) {
     try {
+      params["is_pending"] =
+        params["feedback"] == undefined || params["feedback"] == null
+          ? true
+          : false;
       const output = await this.feedbackDAO.add(params);
       return output;
     } catch (e) {
@@ -23,6 +29,10 @@ class FeedbackService {
 
   async update(params) {
     try {
+      params["is_pending"] =
+        params["feedback"] == undefined || params["feedback"] == null
+          ? true
+          : false;
       const id = params._id;
       delete params["_id"];
       const output = await this.feedbackDAO.update(id, params);
@@ -32,12 +42,9 @@ class FeedbackService {
     }
   }
 
-  async remove(params) {
-    try {
-      await this.feedbackDAO.remove(params);
-    } catch (e) {
-      throw e;
-    }
+  async getFeedbackRequestsForAnEmployee(_id) {
+    let params = { from: mongoose.Types.ObjectId(_id), is_pending: true };
+    return await this.feedbackDAO.get(params);
   }
 }
 
