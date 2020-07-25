@@ -4,7 +4,8 @@ class EmployeeService {
   }
 
   async get(params) {
-    await this.employeeDAO.get(params);
+    const employees = await this.employeeDAO.get(params);
+    return employees;
   }
 
   async add(params) {

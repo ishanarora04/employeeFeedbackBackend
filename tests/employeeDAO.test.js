@@ -6,15 +6,15 @@ const faker = require("faker");
 
 const EmployeeDAO = require("../routes/employee/employeeDAO");
 const employeeModel = require("../lib/models/employee");
-const employeeController = require("../routes/employee");
+
 mongoose.connect(
   "mongodb://ishanarora:ishanarora1@ds133353.mlab.com:33353/employee_feedback_test",
   { useUnifiedTopology: true, useNewUrlParser: true }
 );
 
 describe("Employee DAO", () => {
-  employeeDAO = new EmployeeDAO(employeeModel);
-
+  const employeeDAO = new EmployeeDAO(employeeModel);
+  
   let employee;
 
   beforeEach(async () => {
@@ -52,6 +52,5 @@ describe("Employee DAO", () => {
 
   after(async () => {
     await mongoose.connection.dropCollection(employeeModel.collection.name);
-    await mongoose.connection.close();
   });
 });
