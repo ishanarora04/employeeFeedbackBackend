@@ -1,6 +1,7 @@
 class EmployeeService {
   constructor(employeeDAO) {
     this.employeeDAO = employeeDAO;
+    this.get = this.get.bind(this);
   }
 
   async get(params) {

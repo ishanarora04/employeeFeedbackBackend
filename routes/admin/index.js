@@ -3,7 +3,7 @@ const EmployeeService = require("./../employee/employeeService");
 const EmployeeDAO = require("./../employee/employeeDAO");
 
 const employeeDAO = new EmployeeDAO(employeeModel);
-const employeeService = new EmployeeService(employeeModel);
+const employeeService = new EmployeeService(employeeDAO);
 
 const feedbackModel = require("./../../lib/models/feedback");
 const FeedbackService = require("./../feedback/feedbackService");

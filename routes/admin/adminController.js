@@ -10,8 +10,8 @@ class AdminController {
 
   async getEmployeesToAssignForFeedback(req, res) {
     try {
-      const employees = await this.adminService.getEmployeesToAssignForFeedback(
-        req.params
+      const employees = await this.adminService.getEmployeesToAssignForFeedbackForAnEmployee(
+        req.query
       );
       return utility.sendResponse(res, employees);
     } catch (e) {
