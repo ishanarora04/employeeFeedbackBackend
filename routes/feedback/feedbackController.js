@@ -1,38 +1,56 @@
+const utility = require("./../../lib/utility");
+
 class FeedbackController {
   constructor(feedbackService) {
     this.feedbackService = feedbackService;
+    this.get = this.get.bind(this);
+    this.add = this.add.bind(this);
+    this.update = this.update.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
   async get(req, res) {
     try {
       const params = req.query;
       const output = this.feedbackService.get(params);
-      res.send(output);
-    } catch (e) {}
+      return utility.sendResponse(res, output);
+    } catch (e) {
+      console.error(e);
+      return utility.sendErrorResponse(res, e);
+    }
   }
 
   async add(req, res) {
     try {
       const params = req.params;
       const output = this.feedbackService.add(params);
-      res.send(output);
-    } catch (e) {}
+      return utility.sendResponse(res, output);
+    } catch (e) {
+      console.error(e);
+      return utility.sendErrorResponse(res, e);
+    }
   }
 
   async update(req, res) {
     try {
       const params = req.params;
       const output = this.feedbackService.update(params);
-      res.send(output);
-    } catch (e) {}
+      return utility.sendResponse(res, output);
+    } catch (e) {
+      console.error(e);
+      return utility.sendErrorResponse(res, e);
+    }
   }
 
   async remove(req, res) {
     try {
       const params = req.params;
       const output = this.feedbackService.remove(params);
-      res.send(output);
-    } catch (e) {}
+      return utility.sendResponse(res, output);
+    } catch (e) {
+      console.error(e);
+      return utility.sendErrorResponse(res, e);
+    }
   }
 }
 

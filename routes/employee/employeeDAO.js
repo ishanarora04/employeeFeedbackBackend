@@ -17,6 +17,7 @@ class EmployeeDAO {
 
   async add(params) {
     try {
+      console.log(params);
       const employee = new this.Model(params);
       const output = await employee.save();
       return output;
