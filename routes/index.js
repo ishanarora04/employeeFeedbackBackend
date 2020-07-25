@@ -8,5 +8,14 @@ const employee = require("./employee");
  */
 
 router.get("/employee", employee.get);
+router.post("/employee", employee.add);
+router.put("/employee", employee.add);
+router.delete("/employee", employee.remove);
+
+
+/**
+ * Feedback CRUD
+ */
+
 
 module.exports = router;

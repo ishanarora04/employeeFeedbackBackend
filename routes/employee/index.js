@@ -1,4 +1,4 @@
-const employeeModel = require("./../../lib/models/employee");
+const employeeModel = require("./../../models/employee");
 const EmployeeController = require("./employeeController");
 const EmployeeService = require("./employeeService");
 const EmployeeDAO = require("./employeeDAO");
