@@ -6,31 +6,47 @@ class EmployeeDAO {
   }
 
   async get(params, projection) {
-    params["is_deleted"] = false;
-    const employees = this.Model.find(params, projection);
-    return employees;
+    try {
+      params["is_deleted"] = false;
+      const employees = this.Model.find(params, projection);
+      return employees;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async add(params) {
-    const employee = new this.Model(params);
-    const output = await employee.save();
-    return output;
+    try {
+      const employee = new this.Model(params);
+      const output = await employee.save();
+      return output;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async update(id, params) {
-    const updatedEmployee = await this.Model.findByIdAndUpdate(
-      mongoose.Types.ObjectId(id),
-      params,
-      {
-        new: true,
-      }
-    );
-    return updatedEmployee;
+    try {
+      const updatedEmployee = await this.Model.findByIdAndUpdate(
+        mongoose.Types.ObjectId(id),
+        params,
+        {
+          new: true,
+        }
+      );
+      return updatedEmployee;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async remove(id) {
-    const employee = await this.update(id, { is_deleted: true });
-    return employee;
+    try {
+      const employee = await this.update(id, { is_deleted: true });
+      return employee;
+    } catch (e) {
+      throw e;
+    }
   }
 }
 

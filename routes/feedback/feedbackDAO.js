@@ -6,26 +6,38 @@ class FeedbackDAO {
   }
 
   async add(params) {
-    let feedback = new this.Model(params);
-    feedback = await feedback.save();
-    return feedback;
+    try {
+      let feedback = new this.Model(params);
+      feedback = await feedback.save();
+      return feedback;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async update(id, params) {
-    const updatedFeedback = await this.Model.findByIdAndUpdate(
-      mongoose.Types.ObjectId(id),
-      params,
-      {
-        new: true,
-      }
-    );
-    return updatedFeedback;
+    try {
+      const updatedFeedback = await this.Model.findByIdAndUpdate(
+        mongoose.Types.ObjectId(id),
+        params,
+        {
+          new: true,
+        }
+      );
+      return updatedFeedback;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async get(params, projection) {
-    params["is_deleted"] = false;
-    const feedbacks = await this.Model.find(params, projection);
-    return feedbacks;
+    try {
+      params["is_deleted"] = false;
+      const feedbacks = await this.Model.find(params, projection);
+      return feedbacks;
+    } catch (e) {
+      throw e;
+    }
   }
 }
 

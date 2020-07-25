@@ -4,27 +4,35 @@ class EmployeeController {
   }
 
   async get(req, res) {
-    const params = req.query;
-    const output = this.employeeService.get(params);
-    res.send(output);
+    try {
+      const params = req.query;
+      const output = this.employeeService.get(params);
+      res.send(output);
+    } catch (e) {}
   }
 
   async add(req, res) {
-    const params = req.params;
-    const output = this.employeeService.add(params);
-    res.send(output);
+    try {
+      const params = req.params;
+      const output = this.employeeService.add(params);
+      res.send(output);
+    } catch (e) {}
   }
 
   async update(req, res) {
-    const params = req.params;
-    const output = this.employeeService.update(params);
-    res.send(output);
+    try {
+      const params = req.params;
+      const output = this.employeeService.update(params);
+      res.send(output);
+    } catch (e) {}
   }
 
   async remove(req, res) {
-    const params = req.params;
-    const output = this.employeeService.remove(params);
-    res.send(output);
+    try {
+      const params = req.params;
+      const output = this.employeeService.remove(params);
+      res.send(output);
+    } catch (e) {}
   }
 }
 

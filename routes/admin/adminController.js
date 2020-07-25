@@ -4,9 +4,13 @@ class AdminController {
   }
 
   async getEmployeesToAssignForFeedback(req, res) {
-    const employees = await this.adminService.getEmployeesToAssignForFeedback(
-      req.params
-    );
-    return employees;
+    try {
+      const employees = await this.adminService.getEmployeesToAssignForFeedback(
+        req.params
+      );
+      return employees;
+    } catch (e) {}
   }
 }
+
+module.exports = AdminController;

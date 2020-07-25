@@ -4,23 +4,39 @@ class FeedbackService {
   }
 
   async get(params, projection) {
-    const feedbacks = await this.feedbackDAO.get(params, projection);
-    return feedbacks;
+    try {
+      const feedbacks = await this.feedbackDAO.get(params, projection);
+      return feedbacks;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async add(params) {
-    const output = await this.feedbackDAO.add(params);
-    return output;
+    try {
+      const output = await this.feedbackDAO.add(params);
+      return output;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async update(params) {
-    const id = params._id;
-    delete params["_id"];
-    await this.feedbackDAO.update(id, params);
+    try {
+      const id = params._id;
+      delete params["_id"];
+      await this.feedbackDAO.update(id, params);
+    } catch (e) {
+      throw e;
+    }
   }
 
   async remove(params) {
-    await this.feedbackDAO.remove(params);
+    try {
+      await this.feedbackDAO.remove(params);
+    } catch (e) {
+      throw e;
+    }
   }
 }
 

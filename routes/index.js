@@ -3,6 +3,7 @@ const router = express.Router();
 
 const employee = require("./employee");
 const feedback = require("./feedback");
+const admin = require("./admin");
 
 /**
  *Employee CRUD
@@ -15,12 +16,16 @@ router.delete("/employee", employee.remove);
 /**
  * Feedback CRUD
  */
-router.get("/feedback", employee.get);
-router.post("/feedback", employee.add);
-router.put("/feedback", employee.update);
-router.delete("/feedback", employee.remove);
+router.get("/feedback", feedback.get);
+router.post("/feedback", feedback.add);
+router.put("/feedback", feedback.update);
+router.delete("/feedback", feedback.remove);
 
+/**
+ *
+ *
+ */
 
-
+router.get("/fetchEmployeesToAssign", admin.getEmployeesToAssignForFeedback);
 
 module.exports = router;
