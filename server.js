@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const config = require("config");
 
-const port = config.get("port");
+const port = process.env.PORT || config.get("port");
 const mongo_url = config.get("mongo.url");
 const mongo_db = config.get("mongo.database");
 const mongo_user = config.get("mongo.username");
