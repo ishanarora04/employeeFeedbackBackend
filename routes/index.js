@@ -27,5 +27,6 @@ router.put("/feedback", feedback.update);
  */
 
 router.get("/fetchEmployeesToAssign", admin.getEmployeesToAssignForFeedback);
+router.get("/fetchEmployees", admin.fetchEmployees);
 
 module.exports = router;

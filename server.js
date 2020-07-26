@@ -17,6 +17,13 @@ app.use(morgan(":method :url :response-time"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET, POST,DELETE,PUT')
+  next();
+});
+
 app.use("/v1", routes);
 
 async function createApp() {

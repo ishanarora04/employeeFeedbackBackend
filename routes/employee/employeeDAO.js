@@ -8,7 +8,7 @@ class EmployeeDAO {
   async get(params, projection) {
     try {
       params["is_deleted"] = false;
-      const employees = this.Model.find(params, projection);
+      const employees = this.Model.find(params, projection).lean();
       return employees;
     } catch (e) {
       throw e;
