@@ -1,7 +1,6 @@
 const employeeController = require("../employee");
 const mongoose = require("mongoose");
 const utility = require("../../lib/utility");
-const { util } = require("chai");
 const feedbackController = require("../feedback");
 
 class AdminService {
@@ -45,8 +44,6 @@ class AdminService {
         { from: mongoose.Types.ObjectId(admin_id) },
         { to: 1, feedback: 1 }
       );
-
-      console.log(feedback);
 
       const dictionary = {};
       for (const elem of feedback) {
