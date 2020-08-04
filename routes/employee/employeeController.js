@@ -1,4 +1,6 @@
-const utility = require("./../../lib/utility");
+'use strict';
+
+const utility = require('./../../lib/utility');
 
 class EmployeeController {
   constructor(employeeService) {

@@ -1,4 +1,5 @@
-const utility = require("./../../lib/utility");
+'use strict';
+const utility = require('./../../lib/utility');
 
 class FeedbackController {
   constructor(feedbackService) {
@@ -47,7 +48,7 @@ class FeedbackController {
       const params = req.query;
       const _id = params._id;
       const output = await this.feedbackService.getFeedbackRequestsForAnEmployee(
-        _id
+        _id,
       );
       return utility.sendResponse(res, output);
     } catch (e) {

@@ -1,3 +1,5 @@
+'use strict';
+
 class EmployeeService {
   constructor(employeeDAO) {
     this.employeeDAO = employeeDAO;
@@ -25,7 +27,7 @@ class EmployeeService {
   async update(params) {
     try {
       const id = params._id;
-      delete params["_id"];
+      delete params['_id'];
       await this.employeeDAO.update(id, params);
     } catch (e) {
       throw e;

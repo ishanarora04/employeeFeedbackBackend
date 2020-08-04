@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+'use strict';
+const mongoose = require('mongoose');
 
 class FeedbackService {
   constructor(feedbackDAO) {
@@ -16,10 +17,9 @@ class FeedbackService {
 
   async add(params) {
     try {
-      params["is_pending"] =
-        params["feedback"] == undefined || params["feedback"] == null
-          ? true
-          : false;
+      params['is_pending'] = !!(
+        params['feedback'] === undefined || params['feedback'] === null
+      );
       const output = await this.feedbackDAO.add(params);
       return output;
     } catch (e) {
@@ -29,12 +29,11 @@ class FeedbackService {
 
   async update(params) {
     try {
-      params["is_pending"] =
-        params["feedback"] == undefined || params["feedback"] == null
-          ? true
-          : false;
+      params['is_pending'] = !!(
+        params['feedback'] === undefined || params['feedback'] === null
+      );
       const id = params._id;
-      delete params["_id"];
+      delete params['_id'];
       const output = await this.feedbackDAO.update(id, params);
       return output;
     } catch (e) {

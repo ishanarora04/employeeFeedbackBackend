@@ -1,4 +1,6 @@
-const mongoose = require("mongoose");
+'use strict';
+
+const mongoose = require('mongoose');
 
 class FeedbackDAO {
   constructor(Model) {
@@ -22,7 +24,7 @@ class FeedbackDAO {
         params,
         {
           new: true,
-        }
+        },
       );
       return updatedFeedback;
     } catch (e) {
@@ -32,10 +34,10 @@ class FeedbackDAO {
 
   async get(params, projection) {
     try {
-      params["is_deleted"] = false;
+      params['is_deleted'] = false;
       const feedbacks = await this.Model.find(params, projection)
-        .populate("from")
-        .populate("to");
+        .populate('from')
+        .populate('to');
       return feedbacks;
     } catch (e) {
       throw e;
