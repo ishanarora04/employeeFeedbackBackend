@@ -2,3 +2,4 @@ node_modules
 .idea
 config/
 .DS_Store
+node_modules/
