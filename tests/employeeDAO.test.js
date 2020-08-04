@@ -26,7 +26,7 @@ describe('Employee DAO', () => {
 
   it('should be able to add an employee', async() => {
     const name = faker.name.findName();
-    const employee = {name: name, is_deleted: false};
+    const employee = {name: name, email: `${name}@faker.com`, is_deleted: false};
     const output = await employeeDAO.add(employee);
     expect(output.name).to.equal(name);
     await employeeDAO.remove(output._id);

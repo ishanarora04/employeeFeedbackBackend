@@ -30,9 +30,9 @@ describe('Admin Service', async() => {
   let emp1, emp2, emp3, feedback1;
 
   before(async() => {
-    emp1 = new EmployeeModel({name: 'Amy', is_deleted: false});
-    emp2 = new EmployeeModel({name: 'Bob', is_deleted: false});
-    emp3 = new EmployeeModel({name: 'Carry', is_deleted: false});
+    emp1 = new EmployeeModel({name: 'Amy', email: 'amy@mailme.com', is_deleted: false});
+    emp2 = new EmployeeModel({name: 'Bob', email: 'bob@mailme.com', is_deleted: false});
+    emp3 = new EmployeeModel({name: 'Carry', email: 'carry@mailme.com', is_deleted: false});
     await emp1.save();
     await emp2.save();
     await emp3.save();
