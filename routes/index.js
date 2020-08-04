@@ -36,10 +36,4 @@ router.get('/fetchEmployees', admin.fetchEmployees);
  *
  */
 
-router.get(
-  '/fetchFeedbackForEmployees',
-  middleware,
-  thirdPartyModule.fetchFeedbackForEmployees,
-);
-
 module.exports = router;

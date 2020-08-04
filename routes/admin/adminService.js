@@ -1,9 +1,7 @@
 'use strict';
 
-const employeeController = require('../employee');
 const mongoose = require('mongoose');
 const utility = require('../../lib/utility');
-const feedbackController = require('../feedback');
 
 class AdminService {
   constructor(feedbackService, employeeService) {

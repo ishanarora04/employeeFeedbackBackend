@@ -2,27 +2,26 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const sinon = require('sinon');
 const mongoose = require('mongoose');
 const faker = require('faker');
 
 const FeedbackDAO = require('../routes/feedback/feedbackDAO');
-const feedbackModel = require('../lib/models/feedback');
+const FeedbackModel = require('../lib/models/feedback');
 const Employee = require('../lib/models/employee');
 
 mongoose.connect(
   'mongodb://ishanarora:ishanarora1@ds133353.mlab.com:33353/employee_feedback_test',
-  {useUnifiedTopology: true, useNewUrlParser: true},
+  { useUnifiedTopology: true, useNewUrlParser: true },
 );
 
 describe('Feedback DAO', () => {
-  const feedbackDAO = new FeedbackDAO(feedbackModel);
+  const feedbackDAO = new FeedbackDAO(FeedbackModel);
 
   let emp1, emp2, feedback;
 
   beforeEach(async() => {
-    emp1 = new Employee({name: 'Amy', is_deleted: false});
-    emp2 = new Employee({name: 'Bob', is_deleted: false});
+    emp1 = new Employee({ name: 'Amy', is_deleted: false });
+    emp2 = new Employee({ name: 'Bob', is_deleted: false });
     await emp1.save();
     await emp2.save();
 
@@ -33,7 +32,7 @@ describe('Feedback DAO', () => {
       is_deleted: false,
     };
 
-    feedback = new feedbackModel({
+    feedback = new FeedbackModel({
       from: emp1,
       to: emp2,
       is_pending: true,
@@ -66,18 +65,12 @@ describe('Feedback DAO', () => {
   });
 
   it('should get all the feedbacks for current_employee to fill', async() => {
-    const params = {
-      from: emp1,
-      is_pending: true,
-      is_deleted: false,
-    };
-
     const output = await feedbackDAO.get({});
     expect(output[0].is_pending).to.be.true;
   });
 
   afterEach(async() => {
-    await mongoose.connection.dropCollection(feedbackModel.collection.name);
+    await mongoose.connection.dropCollection(FeedbackModel.collection.name);
     await mongoose.connection.dropCollection(Employee.collection.name);
   });
 });

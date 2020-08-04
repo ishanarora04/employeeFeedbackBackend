@@ -2,17 +2,15 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const sinon = require('sinon');
 const mongoose = require('mongoose');
-const faker = require('faker');
 
 const EmployeeService = require('../routes/employee/employeeService');
 const EmployeeDAO = require('../routes/employee/employeeDAO');
-const employeeModel = require('../lib/models/employee');
+const EmployeeModel = require('../lib/models/employee');
 
 const FeedbackService = require('../routes/feedback/feedbackService');
 const FeedbackDAO = require('../routes/feedback/feedbackDAO');
-const feedbackModel = require('../lib/models/feedback');
+const FeedbackModel = require('../lib/models/feedback');
 
 const AdminService = require('../routes/admin/adminService');
 mongoose.connect(
@@ -21,8 +19,8 @@ mongoose.connect(
 );
 
 describe('Admin Service', async() => {
-  const employeeDAO = new EmployeeDAO(employeeModel);
-  const feedbackDAO = new FeedbackDAO(feedbackModel);
+  const employeeDAO = new EmployeeDAO(EmployeeModel);
+  const feedbackDAO = new FeedbackDAO(FeedbackModel);
 
   const employeeService = new EmployeeService(employeeDAO);
   const feedbackService = new FeedbackService(feedbackDAO);
@@ -32,14 +30,14 @@ describe('Admin Service', async() => {
   let emp1, emp2, emp3, feedback1;
 
   before(async() => {
-    emp1 = new employeeModel({name: 'Amy', is_deleted: false});
-    emp2 = new employeeModel({name: 'Bob', is_deleted: false});
-    emp3 = new employeeModel({name: 'Carry', is_deleted: false});
+    emp1 = new EmployeeModel({name: 'Amy', is_deleted: false});
+    emp2 = new EmployeeModel({name: 'Bob', is_deleted: false});
+    emp3 = new EmployeeModel({name: 'Carry', is_deleted: false});
     await emp1.save();
     await emp2.save();
     await emp3.save();
 
-    feedback1 = new feedbackModel({from: emp1, to: emp2, is_deleted: false});
+    feedback1 = new FeedbackModel({from: emp1, to: emp2, is_deleted: false});
     await feedback1.save();
   });
 
@@ -51,7 +49,7 @@ describe('Admin Service', async() => {
   });
 
   after(async() => {
-    await mongoose.connection.dropCollection(feedbackModel.collection.name);
-    await mongoose.connection.dropCollection(employeeModel.collection.name);
+    await mongoose.connection.dropCollection(FeedbackModel.collection.name);
+    await mongoose.connection.dropCollection(EmployeeModel.collection.name);
   });
 });

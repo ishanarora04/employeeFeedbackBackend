@@ -2,12 +2,11 @@
 
 const chai = require('chai');
 const expect = chai.expect;
-const sinon = require('sinon');
 const mongoose = require('mongoose');
 const faker = require('faker');
 
 const EmployeeDAO = require('../routes/employee/employeeDAO');
-const employeeModel = require('../lib/models/employee');
+const EmployeeModel = require('../lib/models/employee');
 
 mongoose.connect(
   'mongodb://ishanarora:ishanarora1@ds133353.mlab.com:33353/employee_feedback_test',
@@ -15,13 +14,13 @@ mongoose.connect(
 );
 
 describe('Employee DAO', () => {
-  const employeeDAO = new EmployeeDAO(employeeModel);
+  const employeeDAO = new EmployeeDAO(EmployeeModel);
 
   let employee;
 
   beforeEach(async() => {
     const name = faker.name.findName();
-    const emp = new employeeModel({name: name, is_deleted: false});
+    const emp = new EmployeeModel({name: name, is_deleted: false});
     employee = await emp.save();
   });
 
@@ -53,6 +52,6 @@ describe('Employee DAO', () => {
   });
 
   after(async() => {
-    await mongoose.connection.dropCollection(employeeModel.collection.name);
+    await mongoose.connection.dropCollection(EmployeeModel.collection.name);
   });
 });
