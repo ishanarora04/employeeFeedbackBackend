@@ -1,4 +1,6 @@
-const mongoose = require("mongoose");
+'use strict';
+
+const mongoose = require('mongoose');
 
 class EmployeeDAO {
   constructor(Model) {
@@ -7,7 +9,7 @@ class EmployeeDAO {
 
   async get(params, projection) {
     try {
-      params["is_deleted"] = false;
+      params['is_deleted'] = false;
       const employees = this.Model.find(params, projection).lean();
       return employees;
     } catch (e) {
@@ -17,7 +19,7 @@ class EmployeeDAO {
 
   async add(params) {
     try {
-      params["is_deleted"] = false;
+      params['is_deleted'] = false;
       const employee = new this.Model(params);
       const output = await employee.save();
       return output;
@@ -33,7 +35,7 @@ class EmployeeDAO {
         params,
         {
           new: true,
-        }
+        },
       );
       return updatedEmployee;
     } catch (e) {

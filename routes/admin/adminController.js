@@ -1,10 +1,12 @@
-const utility = require("./../../lib/utility");
+'use strict';
+
+const utility = require('./../../lib/utility');
 
 class AdminController {
   constructor(adminService) {
     this.adminService = adminService;
     this.getEmployeesToAssignForFeedback = this.getEmployeesToAssignForFeedback.bind(
-      this
+      this,
     );
     this.fetchEmployees = this.fetchEmployees.bind(this);
   }
@@ -12,7 +14,7 @@ class AdminController {
   async getEmployeesToAssignForFeedback(req, res) {
     try {
       const employees = await this.adminService.getEmployeesToAssignForFeedbackForAnEmployee(
-        req.query
+        req.query,
       );
       return utility.sendResponse(res, employees);
     } catch (e) {
