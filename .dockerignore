@@ -1,4 +1,8 @@
-.git
 node_modules
-coverage
+.idea
+config/
+.DS_Store
+node_modules/
+.git
 .env
+.nyc_output/
