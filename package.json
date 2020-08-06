@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore .",
-    "test": "mocha tests/**/*test.js --reporter spec --timeout 20000 --exit"
+    "test": "mocha tests/**/*test.js --reporter spec --timeout 20000 --exit",
+    "coverage": "nyc npm run test"
   },
   "author": "Ishan Arora",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "eslint-config-strongloop": "^2.1.0",
     "faker": "^4.1.0",
     "mocha": "^8.0.1",
+    "nyc": "^15.1.0",
     "sinon": "^9.0.2"
   },
   "engines": {
