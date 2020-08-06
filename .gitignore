@@ -4,3 +4,4 @@ config/
 .DS_Store
 node_modules/
 .git
+.env

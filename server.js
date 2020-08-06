@@ -3,18 +3,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const config = require("config");
-
-const port = process.env.PORT || config.get("port");
-const mongo_url = config.get("mongo.url");
-const mongo_db = config.get("mongo.database");
-const mongo_user = config.get("mongo.username");
-const mongo_password = config.get("mongo.password");
+const port = process.env.PORT
 
 const routes = require("./routes");
 const mongo_connect = require("./lib/mongo");
-const { reset } = require("sinon");
-const url = process.env.MONGO_DB || `mongodb://${mongo_user}:${mongo_password}@${mongo_url}/${mongo_db}`;
+const url = process.env.MONGO_DB
+
 const app = express();
 app.use(morgan(":method :url :response-time"));
 app.use(bodyParser.urlencoded({ extended: false }));
