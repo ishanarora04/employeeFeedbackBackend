@@ -14,7 +14,7 @@ const FeedbackModel = require('../lib/models/feedback');
 
 const AdminService = require('../routes/admin/adminService');
 mongoose.connect(
-  'mongodb://ishanarora:ishanarora1@ds133353.mlab.com:33353/employee_feedback_test',
+  process.env.MONGO_DB_TEST,
   {useUnifiedTopology: true, useNewUrlParser: true},
 );
 

@@ -14,14 +14,14 @@ class AdminService {
 
       const current_employee_id = mongoose.Types.ObjectId(params.emp_id);
       const alreadyAssignedEmployees = await this.feedbackService.get(
-        { from: mongoose.Types.ObjectId(params.emp_id) },
-        { to: 1 },
+        { to: mongoose.Types.ObjectId(params.emp_id) },
+        { from: 1 },
       );
 
       const employeeIds = [];
 
       for (const elem of alreadyAssignedEmployees) {
-        employeeIds.push(elem.to._id);
+        employeeIds.push(elem.from._id);
       }
 
       employeeIds.push(current_employee_id);
