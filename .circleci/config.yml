@@ -9,10 +9,6 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-        name: Running npm pretest
-        command: |
-          npm run pretest
-      - run:
           name: Running npm test
           command: |
             npm run test
