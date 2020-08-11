@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t heroku-dockerize:circleci .
+            docker build -t $HEROKU_APP_NAME:circleci .
             docker images
   deploy:
     executor: heroku/default
