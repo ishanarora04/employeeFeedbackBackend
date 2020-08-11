@@ -3,6 +3,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const rateLimiter = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+
 const port = process.env.PORT;
 
 const routes = require('./routes');
@@ -10,6 +15,19 @@ const mongo_connect = require('./lib/mongo');
 const url = process.env.MONGO_DB;
 
 const app = express();
+app.use(express.json({ limit: '10kb' }));
+app.use(xss());
+
+const limit = rateLimiter({
+  max: 1000,
+  windowMs: 60 * 60 * 1000, // 1 Hour
+  message: 'Too many requests', // message to send
+});
+app.use(limit);
+app.use(helmet());
+app.use(mongoSanitize());
+
+
 app.use(morgan(':method :url :response-time'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
