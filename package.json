@@ -19,7 +19,7 @@
     "lodash": "^4.17.20",
     "helmet": "^4.2.0",
     "lodash": "^4.17.19",
-    "mongoose": "^5.10.4",
+    "mongoose": "^5.12.13",
     "morgan": "^1.10.0",
     "prettier": "^2.2.1",
     "xss-clean": "^0.1.1"
